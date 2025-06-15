@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Employee{% endblock title %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">🚀 Add New Employee</h1>
+        <p class="lead text-muted">Enter details below to onboard a new team superstar.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <form action="" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstname" class="form-label">First Name</label>
+                                <input type="text" name="firstname" id="firstname" class="form-control" placeholder="John" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastname" class="form-label">Last Name</label>
+                                <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Doe" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="john.doe@example.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="salary" class="form-label">Salary (PKR)</label>
+                                <input type="number" name="salary" id="salary" class="form-control" placeholder="e.g. 80000" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bonus" class="form-label">Bonus</label>
+                                <input type="number" name="bonus" id="bonus" class="form-control" placeholder="e.g. 5000" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="role" class="form-label">Role ID</label>
+                                <input type="number" name="role" id="role" class="form-control" placeholder="1 = Developer, 2 = Manager, etc." required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="department" class="form-label">Department ID</label>
+                                <input type="number" name="department" id="department" class="form-control" placeholder="1 = IT, 2 = HR, etc." required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="number" name="phone" id="phone" class="form-control" placeholder="e.g. 03001234567" required>
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-between">
+                            <a href="/" class="btn btn-outline-warning px-4 py-2 rounded-pill">← Back Home</a>
+                            <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill shadow">
+                                <i class="bi bi-plus-circle"></i> Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

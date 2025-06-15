@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-lg border-0 rounded-4 mt-5">
+      <div class="card-body p-5">
+        <h2 class="card-title text-center mb-4">Create Your Account</h2>
+
+        <form method="POST" onsubmit="return validatePasswords();">
+          <!-- Username -->
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input 
+              type="text" 
+              class="form-control form-control-lg" 
+              id="username" 
+              name="username" 
+              placeholder="Enter username" 
+              required>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input 
+              type="email" 
+              class="form-control form-control-lg" 
+              id="email" 
+              name="email" 
+              placeholder="name@example.com" 
+              required>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3 position-relative">
+            <label for="password" class="form-label">Password</label>
+            <input 
+              type="password" 
+              class="form-control form-control-lg" 
+              id="password" 
+              name="password" 
+              placeholder="Enter password" 
+              oninput="updateStrength(this.value)" 
+              required>
+            <button 
+              type="button" 
+              class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2" 
+              onclick="toggleVisibility('password', this)">
+              👁
+            </button>
+          </div>
+          <!-- Strength Meter -->
+          <div class="mb-3">
+            <div class="progress" style="height: 8px;">
+              <div 
+                id="strengthBar" 
+                class="progress-bar" 
+                role="progressbar" 
+                style="width: 0%"></div>
+            </div>
+            <small id="strengthText" class="form-text text-muted"></small>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="mb-4 position-relative">
+            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <input 
+              type="password" 
+              class="form-control form-control-lg" 
+              id="confirm_password" 
+              name="confirm_password" 
+              placeholder="Re-enter password" 
+              required>
+            <button 
+              type="button" 
+              class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2" 
+              onclick="toggleVisibility('confirm_password', this)">
+              👁
+            </button>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-primary w-100 btn-lg">Sign Up</button>
+        </form>
+
+        <div class="text-center mt-4">
+          <small>Already have an account? <a href="/login">Login here</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Inline JS for Password Features -->
+<script>
+  function toggleVisibility(fieldId, btn) {
+    const inp = document.getElementById(fieldId);
+    if (inp.type === 'password') {
+      inp.type = 'text';
+      btn.textContent = '🙈';
+    } else {
+      inp.type = 'password';
+      btn.textContent = '👁';
+    }
+  }
+
+  function updateStrength(pwd) {
+    const bar = document.getElementById('strengthBar');
+    const text = document.getElementById('strengthText');
+    let score = 0;
+
+    if (pwd.length >= 8) score += 1;
+    if (/[A-Z]/.test(pwd)) score += 1;
+    if (/[0-9]/.test(pwd)) score += 1;
+    if (/[\W]/.test(pwd)) score += 1;
+
+    const widths = ['0%', '25%', '50%', '75%', '100%'];
+    const labels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
+    bar.style.width = widths[score];
+    bar.className = 'progress-bar bg-' + ['danger','warning','info','primary','success'][score];
+    text.textContent = labels[score];
+  }
+
+  function validatePasswords() {
+    const p = document.getElementById('password').value;
+    const c = document.getElementById('confirm_password').value;
+    if (p !== c) {
+      alert('Passwords do not match!');
+      return false;
+    }
+    return true;
+  }
+</script>
+{% endblock content %}

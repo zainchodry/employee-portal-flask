@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}👨‍💼 Employee List{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="text-center mb-4">
+    <h1 class="display-4 text-gradient fw-bold">📋 Employee Directory</h1>
+    <p class="text-muted">A beautiful and complete overview of your amazing team.</p>
+    <hr class="w-50 mx-auto">
+  </div>
+
+  <div class="card shadow-lg border-0">
+    <div class="card-body p-4">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle text-center">
+          <thead class="table-primary">
+            <tr>
+              <th>#</th>
+              <th>👤 First Name</th>
+              <th>👥 Last Name</th>
+              <th>📧 Email</th>
+              <th>💰 Salary</th>
+              <th>🎁 Bonus</th>
+              <th>🧑‍💼 Role</th>
+              <th>🏢 Department</th>
+              <th>📞 Phone</th>
+              <th>📅 Hire Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in employees %}
+            <tr>
+              <th scope="row">{{ loop.index }}</th>
+              <td>{{ i.firstname }}</td>
+              <td>{{ i.lastname }}</td>
+              <td>{{ i.email }}</td>
+              <td>${{ "{:,}".format(i.salary) }}</td>
+              <td>${{ "{:,}".format(i.bonus) }}</td>
+              <td>{{ i.role.name}}</td>
+              <td>{{ i.department.name }}</td>
+              <td>{{ i.phone }}</td>
+              <td>{{ i.hire_date.strftime("%b %d, %Y") }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <p class="text-muted fst-italic">Showing {{ data|length }} employees. Keep growing your awesome team! 🚀</p>
+  </div>
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(to right, #0d6efd, #6610f2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+</style>
+{% endblock %}

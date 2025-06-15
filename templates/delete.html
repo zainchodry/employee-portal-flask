@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Employee{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body text-center">
+            <h3 class="card-title mb-4 text-danger fw-bold">🚨 Delete an Employee</h3>
+            <div class="dropdown">
+                <button class="btn btn-outline-danger btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Employee to Delete
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    {% for i in employees %}
+                        <li>
+                            <a class="dropdown-item text-danger fw-semibold" href="/delete-employee/{{ i.id }}">
+                                🗑️ {{ i.firstname }} {{ i.lastname }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <span class="dropdown-item text-muted">No employees available</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}🏠 Home - Employee Management System{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h1 class="display-3 fw-bold text-gradient">🚀 Welcome to <span class="text-primary">EMS</span></h1>
+    <p class="lead text-muted">Your all-in-one platform to manage employees with style, speed, and simplicity.</p>
+    <hr class="w-50 mx-auto my-4">
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    <div class="col-md-3 col-sm-6">
+      <a href="{{ url_for('view_employee') }}" class="btn btn-outline-info btn-lg w-100 shadow border-2 rounded-4">
+        👀 View Employees
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <a href="{{ url_for('add_employee') }}" class="btn btn-outline-warning btn-lg w-100 shadow border-2 rounded-4">
+        ➕ Add Employee
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <a href="/delete-employee/" class="btn btn-outline-danger btn-lg w-100 shadow border-2 rounded-4">
+        ❌ Delete Employee
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <a href="{{ url_for('filter_employee') }}" class="btn btn-outline-dark btn-lg w-100 shadow border-2 rounded-4">
+        🔍 Filter Employees
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-5 text-center">
+    <p class="text-muted fst-italic">✨ Designed to make your HR life easier. Try it now and feel the power of modern management! 💼</p>
+  </div>
+</div>
+
+<style>
+    .text-gradient {
+      background: linear-gradient(to right, #007bff, #6610f2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text; /* Fallback for other browsers */
+      color: transparent;
+    }
+    </style>
+{% endblock %}
